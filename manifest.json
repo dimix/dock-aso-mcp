@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "dock-aso",
   "display_name": "Dock — ASO Tracker",
-  "version": "1.4.0",
+  "version": "2.1.0",
   "description": "Read and edit App Store and Google Play listings, analyze keywords, review sales and finance data, and inspect app reviews — all powered by the local Dock app on your Mac.",
   "long_description": "Dock — ASO Tracker is a native macOS app that centralizes App Store Connect and Google Play Console workflows: editing localized metadata, monitoring keywords and rankings, analyzing screenshots, browsing reviews, and tracking sales and finance. This MCP extension exposes Dock's capabilities to Claude so you can ask natural-language questions and apply ASO changes directly from a chat. The extension is a thin stdio bridge: all data, credentials, and edits stay on your Mac inside the Dock app, which must be running with the MCP server enabled (Settings → MCP).",
   "author": {
@@ -22,7 +22,10 @@
     "screenshots",
     "reviews",
     "sales",
-    "macos"
+    "macos",
+    "web-presence",
+    "seo",
+    "link-building"
   ],
   "license": "Proprietary",
   "privacy_policies": [
@@ -50,7 +53,9 @@
   },
   "compatibility": {
     "claude_desktop": ">=0.10.0",
-    "platforms": ["darwin"],
+    "platforms": [
+      "darwin"
+    ],
     "runtimes": {}
   },
   "tools": [
@@ -72,7 +77,39 @@
     },
     {
       "name": "get_app_screenshots",
-      "description": "Get the App Store screenshots for a specific app, language, and platform. Returns the actual images so they can be visually analyzed."
+      "description": "Get the App Store screenshots for a specific app, language, and platform, iPhone Duo included. Returns the actual images so they can be visually analyzed."
+    },
+    {
+      "name": "get_app_previews",
+      "description": "Get the App Store app previews (videos) for a specific app, language, and platform: status, size, video link and the poster frame as an image."
+    },
+    {
+      "name": "get_asset_library",
+      "description": "Read an app's Asset Library on App Store Connect: screenshots, app previews and creative assets, with their state and where each one is used. Read only."
+    },
+    {
+      "name": "get_product_page_creatives",
+      "description": "Get the product page header and search results creative assets for one language of an app. Read only."
+    },
+    {
+      "name": "get_app_evolution",
+      "description": "Get the evolution timeline of an Apple App Store app: how title/subtitle/keywords and keyword rankings changed across published versions over time, grouped into periods."
+    },
+    {
+      "name": "get_app_keyword_history",
+      "description": "Get the historical ranking position (time series) of the keywords tracked for an Apple App Store app, per keyword or for all monitored keywords."
+    },
+    {
+      "name": "search_keyword",
+      "description": "Look up fresh ASO metrics (popularity, difficulty, opportunity index, competitive insights) for any keyword from the Dock server, by keyword and country — no tracked app required."
+    },
+    {
+      "name": "search_apps",
+      "description": "Search the public App Store / Google Play catalog for apps by text query (competitor research). Returns store id, title, developer, rating, category and more for any app — not just your own."
+    },
+    {
+      "name": "get_app_intelligence",
+      "description": "Get a detailed intelligence report for any app on the store by its store id (competitor research): metadata, reviews, and — with a subscription — download/revenue estimates and AI review sentiment."
     },
     {
       "name": "get_google_apps_and_languages",
@@ -113,6 +150,50 @@
     {
       "name": "get_twin_comparison",
       "description": "Side-by-side cross-platform comparison of a twin app's Apple and Google listings for a given language."
+    },
+    {
+      "name": "get_web_presence_apps",
+      "description": "List the apps Dock tracks a website for: domain, last site scan and score, keywords followed on Google, open link building targets, and the state of the DataForSEO account that pays for search data."
+    },
+    {
+      "name": "get_site_audit",
+      "description": "Get the latest technical audit of an app's website: score per area, every failing check with its fix, tips and facts."
+    },
+    {
+      "name": "get_keyword_research",
+      "description": "Get the phrases an app is considering for its site, with search volume, advertiser competition, seasonality and twelve months of history."
+    },
+    {
+      "name": "get_google_results",
+      "description": "Get where an app stands on Google for the keywords it follows, through each channel, plus a tally of who else holds those pages."
+    },
+    {
+      "name": "get_invoicing_period",
+      "description": "Get who to invoice for one month of App Store proceeds and for how much: Apple's seven paying companies, their billing details, and what each one's share is made of."
+    },
+    {
+      "name": "get_invoicing_outstanding",
+      "description": "Find the months whose money has arrived and whose invoices have not gone out yet."
+    },
+    {
+      "name": "get_link_building_targets",
+      "description": "Get the pages worth asking for a link: articles that name the app without linking it, and list articles that leave it out."
+    },
+    {
+      "name": "get_ai_answers",
+      "description": "Get where an app's site is quoted in answers AI assistants have already given, and which of its pages earn those citations."
+    },
+    {
+      "name": "add_research_keywords",
+      "description": "Add phrases to an app's keyword research list. Free; reports what pricing them would cost."
+    },
+    {
+      "name": "follow_keywords",
+      "description": "Start tracking keywords on Google for an app. Free to follow; reports what reading them costs."
+    },
+    {
+      "name": "update_link_building_target",
+      "description": "Record what happened with a link building target: its state, the address to write to, and what was promised."
     }
   ]
 }
